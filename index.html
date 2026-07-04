@@ -20,7 +20,10 @@
     --crimson-text:#e0616e;
     --teal:#3f8f82;
     --teal-text:#7fc9bc;
+    --lane-green:#6ebe46;
+    --lane-green-dim:#4a8a30;
     --gray:#7a7568;
+    --slate-text:#8fb3d9;
     --text:#e9e3d6;
     --text-dim:#a8a294;
     --text-faint:#6b6659;
@@ -106,9 +109,10 @@
     font-family:'JetBrains Mono',monospace; font-size:12px; padding:2px 7px;
     border-radius:3px; background:var(--panel-2); border:1px solid var(--line); color:var(--text-dim);
   }
-  .lane-chip.y{border-color:var(--gold-dim); color:var(--gold-text);}
-  .lane-chip.g{border-color:var(--teal); color:var(--teal-text);}
+  .lane-chip.y{border-color:var(--gold); color:var(--gold-text);}
+  .lane-chip.g{border-color:var(--lane-green-dim); color:var(--lane-green);}
  
+  /* ===== RIFT FEATURE — DISABLED (delete this comment block + closing marker below to re-enable)
   .rift-windows{display:flex; flex-wrap:wrap; gap:5px; margin-top:7px;}
   .rift-chip{
     font-family:'JetBrains Mono',monospace; font-size:13px; padding:3px 9px;
@@ -132,6 +136,7 @@
     font-size:11.5px; color:var(--text-faint); text-decoration:underline; cursor:pointer;
     background:none; border:none; padding:0; margin-top:6px; display:inline-block;
   }
+  /* ===== END RIFT FEATURE CSS ===== */
  
   /* fixed timeline, two sub-columns */
   .timeline-cols{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:0 20px;}
@@ -139,10 +144,10 @@
   .timeline::before{content:""; position:absolute; left:5px; top:5px; bottom:5px; width:1px; background:var(--line);}
   .t-row{position:relative; padding:9px 0 9px 13px;}
   .t-row::before{
-    content:""; position:absolute; left:-25px; top:14px; width:10px; height:10px;
+    content:""; position:absolute; left:-22.5px; top:14px; width:10px; height:10px;
     border-radius:50%; background:var(--bg); border:2px solid var(--dot,var(--gray));
   }
-  .t-row.gray{--dot:var(--gray);}
+  .t-row.gray{--dot:var(--slate-text);}
   .t-row.gold{--dot:var(--gold);}
   .t-row.teal{--dot:var(--teal);}
   .t-row.crimson{--dot:var(--crimson);}
@@ -152,7 +157,7 @@
     font-size:12px; padding:3px 8px; border-radius:20px; white-space:normal; line-height:1.3;
     border:1px solid var(--line); color:var(--text-dim); max-width:100%;
   }
-  .tag.gray{color:var(--gray); border-color:var(--gray);}
+  .tag.gray{color:var(--slate-text); border-color:var(--slate-text);}
   .tag.gold{color:var(--gold-text); border-color:var(--gold-dim);}
   .tag.teal{color:var(--teal-text); border-color:var(--teal);}
   .tag.crimson{color:var(--crimson-text); border-color:var(--crimson);}
@@ -166,7 +171,7 @@
 <body>
  
 <header>
-  <h1>Ops Board <span>:: Deadlock</span></h1>
+  <h1>Ref Board <span>:: Deadlock</span></h1>
   <div class="meta">Reference only, remember to update with patches &middot; current through Jun 30 2026 patch</div>
 </header>
  
@@ -221,13 +226,13 @@
         </div>
  
         <div class="ref-card">
-          <div class="ref-name">Zipline boost <span style="font-size:11px; color:var(--text-faint);">(personal)</span></div>
+          <div class="ref-name">Zipline boost <span style="font-size:11px; color:var(--text-faint);"/span></div>
           <div class="ref-detail">Unlocks <b>4:40</b> &middot; <b>6:00</b> cooldown &middot; 32s duration, +80% speed</div>
         </div>
  
         <div class="ref-card">
           <div class="ref-name">Soul Urn lane pattern</div>
-          <div class="ref-detail">Always starts Yellow, alternates every cycle.</div>
+          <div class="ref-detail">Starts Yellow, alternates every cycle</div>
 	  <div class="ref-detail"> Even minute = Yellow, odd = Green:</div>
           <div class="lane-strip">
             <span class="lane-chip y">10 Y</span><span class="lane-chip g">15 G</span>
@@ -238,8 +243,9 @@
           <div class="ref-detail" style="margin-top:6px;">Breaks if an urn goes uncollected while held &mdash; that cycle gets skipped entirely.</div>
         </div>
  
+        <!-- ===== RIFT FEATURE — DISABLED (delete this comment + closing marker below to re-enable)
         <div class="ref-card variable" id="riftCard">
-          <div class="ref-name">Unstable Rift <span style="font-size:11px; color:var(--text-faint);">(was King of the Hill)</span></div>
+          <div class="ref-name">Unstable Rift <span style="font-size:11px; color:var(--text-faint);"/span></div>
           <div class="ref-detail">Type the game clock when it actually opened for capture &mdash; not the 85s warning glow, not the 25s announcement. After that, it's a fixed <b>7:00</b> every time.</div>
  
           <input type="text" class="rift-input" id="riftInput" placeholder="e.g. 12:30" inputmode="numeric">
@@ -264,6 +270,7 @@
           </div>
  
         </div>
+        <!-- ===== END RIFT FEATURE HTML ===== -->
  
       </div>
     </div>
@@ -315,7 +322,6 @@
             <span class="tag gold">Bridge buff</span>
             <span class="tag teal">Soul Urn spawns, repeats every 5:00</span>
             <span class="tag gold">Gold statue buffs upgraded</span>
-            <span class="tag teal">Midboss spawns <span class="dagger">&dagger;</span></span>
             <span class="tag teal">Mid boxes first spawn <span class="dagger">&dagger;</span></span>
           </div>
         </div>
@@ -409,6 +415,7 @@
 <footer>
 </footer>
  
+<!-- ===== RIFT FEATURE — DISABLED (delete this comment + closing marker below to re-enable) =====
 <script>
   let riftAnchorSec = null;
  
@@ -478,6 +485,7 @@
  
   renderRift();
 </script>
+===== END RIFT FEATURE SCRIPT ===== -->
  
 </body>
 </html>
