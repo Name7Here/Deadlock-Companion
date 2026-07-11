@@ -1,7 +1,7 @@
 This is a work in progress "companion" for a second monitor. It's meant to display helpful info at a glance so you can leave your brain firmly turned off.
 
 It's been designed for my vertical monitor, so its slighlty uglier on horizontal monitors. Don't know if that will get fixed, depends how much I care.
-  - ~In the process of making it prettier on horizontal monitors, and trying to make it work for monitors of different sizes.~
+  - In the process of making it prettier on horizontal monitors, and trying to make it work for monitors of different sizes.
   - It has officially been made prettier for 1920x1080 horizontal monitors, I have only tested it on that and my vertical monitor though
 
 For transparency, this is pretty much 100% made by Claude.
