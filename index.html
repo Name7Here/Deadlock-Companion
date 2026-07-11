@@ -68,8 +68,8 @@
   .decay-card.info-card .decay-table td:first-child{width:auto; white-space:nowrap; padding-right:10px;}
   .decay-card.info-card .decay-table td:last-child{white-space:nowrap;}
   .placeholder-card{
-    margin-top:10px; flex:1; min-height:60px; display:flex; align-items:center; justify-content:center;
-    text-align:center; color:var(--gold-text); font-size:13px; padding:12px; line-height:1.5;
+    margin-top:10px; flex:1; display:flex; align-items:center; justify-content:center;
+    text-align:center; color:var(--gold-text); font-size:13px; padding:16px 14px; line-height:1.5;
   }
   .placeholder-card a{color:#5b9dd9;}
 
@@ -147,7 +147,7 @@
   /* ===== END RIFT FEATURE CSS ===== */
 
 
-  /* fixed timeline — single flowing list, columns handled by CSS multicol */
+  /* fixed timeline — CSS grid with explicit row count so columns split evenly and predictably */
   .timeline-cols{column-count:2; column-gap:20px;}
   .t-row{position:relative; padding:9px 0 9px 22px; break-inside:avoid; -webkit-column-break-inside:avoid;}
   .t-row::after{content:""; position:absolute; left:5px; top:0; bottom:0; width:1px; background:var(--line);}
@@ -188,10 +188,11 @@
   @media (min-width: 1500px) and (min-aspect-ratio: 4/3){
     body{max-width:1900px;}
     .layout{grid-template-columns:340px 1fr;}
-    .timeline-cols{column-count:3; column-gap:24px;}
+    .timeline-cols{display:grid; grid-auto-flow:column; grid-template-columns:repeat(3, 1fr); grid-template-rows:repeat(6, auto); column-gap:24px; row-gap:0;}
     .decay-cols{grid-template-columns:repeat(4, 1fr);}
-    .egg-grid{grid-template-columns:repeat(5, 1fr);}
-    .ref-list{display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:start;}
+    .egg-grid{grid-template-columns:repeat(6, 1fr);}
+    .egg-grid .egg-cell:nth-last-child(-n+2){grid-column:span 3;}
+    .ref-list{display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:stretch;}
     .ref-list .ref-card:last-child{grid-column:1 / -1;}
     .t-row{padding:4px 0 4px 22px;}
     .t-labels{margin-top:2px; gap:4px;}
@@ -209,6 +210,12 @@
     .lane-chip{font-size:10.5px; padding:1px 5px;}
     .lane-strip{gap:4px; margin-top:5px;}
     .placeholder-card{padding:8px; font-size:12px;}
+    body{padding:14px 20px 12px;}
+    header{padding-bottom:6px; margin-bottom:10px;}
+    header h1{font-size:20px;}
+    .decay-section{margin-top:8px; padding-top:8px;}
+    footer{margin-top:8px; padding-top:6px;}
+    .signature{margin-top:3px;}
   }
 
   @media (min-width: 1850px) and (min-aspect-ratio: 4/3){
@@ -262,7 +269,7 @@
         <div class="ref-card"><div class="ref-name">Medium camps</div><div class="ref-detail">First <b>5:00</b> &middot; respawns <b>4:50</b> after fully cleared</div></div>
         <div class="ref-card"><div class="ref-name">Large camps</div><div class="ref-detail">First <b>8:00</b> &middot; respawns <b>5:35</b> after fully cleared</div></div>
         <div class="ref-card"><div class="ref-name">Boxes &amp; gold statues</div><div class="ref-detail">First <b>3:00</b> &middot; respawns <b>3:00</b> after cleared</div></div>
-        <div class="ref-card"><div class="ref-name">Mid boxes</div><div class="ref-detail">Spawns at <b>10:00</b>, respawns <b>3:00</b> after cleared</div></div>
+        <div class="ref-card"><div class="ref-name">Mid boxes</div><div class="ref-detail">First <b>10:00</b> &middot; respawns <b>3:00</b> after cleared</div></div>
         <div class="ref-card"><div class="ref-name">Zipline boost</div><div class="ref-detail">Unlocks <b>6:00</b> &middot; <b>6:00</b> cooldown &middot; 32s duration, +80% speed</div></div>
         <div class="ref-card">
           <div class="ref-name">Soul Urn lane pattern</div>
@@ -274,7 +281,8 @@
             <span class="lane-chip y">30 Y</span><span class="lane-chip g">35 G</span>
             <span class="lane-chip y">40 Y</span><span class="lane-chip g">45 G</span>
           </div>
-          <div class="ref-detail" style="margin-top:6px;">Breaks if an urn goes uncollected while held &mdash; that cycle gets skipped entirely.</div>
+          <div class="ref-detail" style="margin-top:6px;">Held past respawn time? Next urn spawns once current urn is delivered/despawns. </div>
+	  <div class="ref-detail" style="margin-top:6px;"> <b>45s</b> safe hold, <b>45s</b> value decay = <b>1:30</b> hold</div>
         </div>
 
         <!-- ===== RIFT FEATURE — DISABLED (delete this comment + closing marker below to re-enable)
